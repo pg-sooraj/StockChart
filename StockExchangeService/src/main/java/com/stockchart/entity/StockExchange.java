@@ -1,6 +1,7 @@
 package com.stockchart.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -16,6 +17,7 @@ public class StockExchange {
 	@Column(name="stock_exchange_brief")
 	private String stockExchangeBrief;
 	@Column(name="stock_exchange_address")
+	@Embedded
 	private Address stockExchangeAddress;
 	@Column(name="remarks")
 	private String remarks;
