@@ -1,18 +1,19 @@
 package com.stockchart.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.stockchart.dao.StockExchangeDao;
 import com.stockchart.entity.StockExchange;
+import com.stockchart.exception.StockExchangeNotFoundException;
 
 @Service
 public class SockExchangeServiceImpl implements StockExchangeService {
 	
 	private StockExchangeDao stockExchangeDao;
+	private final String  message = "Requested stock exchange not found";
 	
 	public SockExchangeServiceImpl(StockExchangeDao stockExchangeDao) {
 		super();
@@ -22,7 +23,7 @@ public class SockExchangeServiceImpl implements StockExchangeService {
 	@Override
 	@Transactional
 	public StockExchange addStockExchange(StockExchange stockExchange) {
-		return stockExchangeDao.saveAndFlush(stockExchange);
+		return stockExchangeDao.save(stockExchange);
 	}
 
 	@Override
@@ -33,20 +34,26 @@ public class SockExchangeServiceImpl implements StockExchangeService {
 
 	@Override
 	@Transactional
-	public Optional<StockExchange> findStockExchangeById(Integer stockExchangeId) {
-		return stockExchangeDao.findById(stockExchangeId);
+	public StockExchange findStockExchangeById(Integer stockExchangeId) throws StockExchangeNotFoundException {
+		if(!stockExchangeDao.existsById(stockExchangeId)) {
+			throw new StockExchangeNotFoundException(message);
+		}
+		return stockExchangeDao.findById(stockExchangeId).get();
 	}
 
 	@Override
 	@Transactional
 	public StockExchange updateStockExchange(StockExchange stockExchange) {
 		stockExchangeDao.deleteById(stockExchange.getStockExchangeId());
-		return stockExchangeDao.saveAndFlush(stockExchange);
+		return stockExchangeDao.save(stockExchange);
 	}
 
 	@Override
 	@Transactional
-	public void deleteStockExchange(StockExchange stockExchange) {
-		stockExchangeDao.deleteById(stockExchange.getStockExchangeId());
+	public void deleteStockExchangeById(Integer stockExchangeId) throws StockExchangeNotFoundException {
+		if(!stockExchangeDao.existsById(stockExchangeId)) {
+			throw new StockExchangeNotFoundException(message);
+		}
+		stockExchangeDao.deleteById(stockExchangeId);
 	}
 }

@@ -1,8 +1,9 @@
 package com.stockchart.entity;
 
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,14 +12,14 @@ import javax.persistence.Table;
 public class StockExchange {
 	@Id
 	@Column(name="stock_exchange_id")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer stockExchangeId;
 	@Column(name="stock_exchange_name")
 	private String stockExchangeName;
 	@Column(name="stock_exchange_brief")
 	private String stockExchangeBrief;
 	@Column(name="stock_exchange_address")
-	@Embedded
-	private Address stockExchangeAddress;
+	private String stockExchangeAddress;
 	@Column(name="remarks")
 	private String remarks;
 	public Integer getStockExchangeId() {
@@ -39,10 +40,10 @@ public class StockExchange {
 	public void setStockExchangeBrief(String stockExchangeBrief) {
 		this.stockExchangeBrief = stockExchangeBrief;
 	}
-	public Address getStockExchangeAddress() {
+	public String getStockExchangeAddress() {
 		return stockExchangeAddress;
 	}
-	public void setStockExchangeAddress(Address stockExchangeAddress) {
+	public void setStockExchangeAddress(String stockExchangeAddress) {
 		this.stockExchangeAddress = stockExchangeAddress;
 	}
 	public String getRemarks() {
@@ -52,7 +53,7 @@ public class StockExchange {
 		this.remarks = remarks;
 	}
 	public StockExchange(Integer stockExchangeId, String stockExchangeName, String stockExchangeBrief,
-			Address stockExchangeAddress, String remarks) {
+			String stockExchangeAddress, String remarks) {
 		super();
 		this.stockExchangeId = stockExchangeId;
 		this.stockExchangeName = stockExchangeName;
