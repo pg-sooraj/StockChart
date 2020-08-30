@@ -11,7 +11,7 @@ public class User {
 	
 	@Id
 	@Column(name="user_id")
-	private Integer userId;
+	private String userId;
 	@Column(name="user_name")
 	private String userName;
 	private String password;
@@ -20,10 +20,10 @@ public class User {
 	private String mobileNumber;
 	private Boolean admin;
 	private Boolean confirmed;
-	public Integer getUserId() {
+	public String getUserId() {
 		return userId;
 	}
-	public void setUserId(Integer userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 	public String getUserName() {
@@ -62,10 +62,7 @@ public class User {
 	public void setConfirmed(Boolean confirmed) {
 		this.confirmed = confirmed;
 	}
-	public User() {
-		super();
-	}
-	public User(Integer userId, String userName, String password, String email, String mobileNumber, Boolean admin,
+	public User(String userId, String userName, String password, String email, String mobileNumber, Boolean admin,
 			Boolean confirmed) {
 		super();
 		this.userId = userId;
@@ -75,5 +72,8 @@ public class User {
 		this.mobileNumber = mobileNumber;
 		this.admin = admin;
 		this.confirmed = confirmed;
+	}
+	public User() {
+		super();
 	}
 }

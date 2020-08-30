@@ -1,20 +1,15 @@
 package com.stockchart.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 public class UserRequestModel {
-	@JsonIgnore
-	private Integer userId;
+	private String userId;
 	private String userName;
 	private String password;
 	private String email;
 	private String mobileNumber;
-	private Boolean admin;
-	private Boolean confirmed;
-	public Integer getUserId() {
+	public String getUserId() {
 		return userId;
 	}
-	public void setUserId(Integer userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 	public String getUserName() {
@@ -41,28 +36,13 @@ public class UserRequestModel {
 	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
-	public Boolean getAdmin() {
-		return admin;
-	}
-	public void setAdmin(Boolean admin) {
-		this.admin = admin;
-	}
-	public Boolean getConfirmed() {
-		return confirmed;
-	}
-	public void setConfirmed(Boolean confirmed) {
-		this.confirmed = confirmed;
-	}
-	public UserRequestModel(Integer userId, String userName, String password, String email, String mobileNumber,
-			Boolean admin, Boolean confirmed) {
+	public UserRequestModel(String userId, String userName, String password, String email, String mobileNumber) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
 		this.password = password;
 		this.email = email;
 		this.mobileNumber = mobileNumber;
-		this.admin = admin;
-		this.confirmed = confirmed;
 	}
 	public UserRequestModel() {
 		super();

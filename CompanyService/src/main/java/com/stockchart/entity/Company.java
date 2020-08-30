@@ -9,8 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,7 +27,7 @@ public class Company {
 	private String ceo;
 	@OneToMany(targetEntity=Director.class, fetch = FetchType.LAZY)
 	private List<Director> boardOfDirectors;
-	@OneToOne(fetch = FetchType.LAZY)
+	@ManyToOne(targetEntity=Sector.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "sector_id")
 	private Sector sector;
 	private String brief;

@@ -1,16 +1,16 @@
 package com.stockchart.model;
 
 public class UserResponseModel {
-	private Integer userId;
+	private String userId;
 	private String userName;
 	private String email;
 	private String mobileNumber;
 	private Boolean admin;
 	private Boolean confirmed;
-	public Integer getUserId() {
+	public String getUserId() {
 		return userId;
 	}
-	public void setUserId(Integer userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 	public String getUserName() {
@@ -43,7 +43,7 @@ public class UserResponseModel {
 	public void setConfirmed(Boolean confirmed) {
 		this.confirmed = confirmed;
 	}
-	public UserResponseModel(Integer userId, String userName, String email, String mobileNumber, Boolean admin,
+	public UserResponseModel(String userId, String userName, String email, String mobileNumber, Boolean admin,
 			Boolean confirmed) {
 		super();
 		this.userId = userId;
